@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Semana 06 : Ejemplo 02</title>
+    <link href="jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+    <link href="jQueryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+    <link href="jQueryAssets/jquery.ui.accordion.min.css" rel="stylesheet" type="text/css">
+    <link href="jQueryAssets/jquery.ui.progressbar.min.css" rel="stylesheet" type="text/css">
+    <link href="jQueryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="jQueryAssets/jquery.ui.tabs.min.css">
+    <script src="jQueryAssets/jquery-1.11.1.min.js"></script>
+    <script src="jQueryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+    <script src="jQueryAssets/jquery.ui-1.10.4.accordion.min.js"></script>
+    <script type="text/javascript" src="jQueryAssets/jquery.ui-1.10.4.tabs.min.js"></script>
+    <script src="jQueryAssets/jquery.ui-1.10.4.progressbar.min.js"></script>
+  </head>
+<body style="margin: 0px">
+  <header>
+     <h1 style="background:black;color: white; padding:0;margin:0;text-align:center">CLASES DE ANIMALES</h1>
+  </header>
+  <img src="img/shut.jpg" style= "width: 100%">
+<div id="Accordion1">
+  <h3><a href="#">MARINOS</a></h3>
+  <div>
+    <p>Se denominan animales marinos a todos aquellos animales que viven en las aguas del mar, toda su vida o al menos gran parte de ella.</p>
+  </div>
+  <h3><a href="#">REPTILES</a></h3>
+  <div>
+    <p> es un animal vertebrado que carece de patas o que las tiene muy cortas, por lo que, al caminar, roza el suelo con su vientre. Se trata de animales que pueden ser ovíparos u ovovivíparos y que presentan una temperatura variable.</p>
+  </div>
+  <h3><a href="#">MAMIFEROS</a></h3>
+  <div>
+    <p>son una clase de vertebrados amniotas homeotermos (de «sangre caliente») que poseen glándulas mamarias productoras de leche con las que alimentan a las crías. La mayoría son vivíparos (con la excepción de los monotremas: ornitorrinco y equidnas).</p>
+  </div>
+  <h3><a href="#">ANFIBIOS</a></h3>
+  <div>
+	<p>es el animal que puede vivir tanto en tierra como sumergido en el agua. Los sapos y las ranas, por ejemplo, son animales anfibios ya que, de jóvenes, tienen branquias y viven en el agua; sin embargo, de adultos, desarrollan pulmones y pasan a vivir en la tierra.</p>	
+  </div>
+</div>
+
+<img src="img/casero.jpg" style="width: 100%">
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Gato</a></li>
+    <li><a href="#tabs-2">Perro</a></li>
+    <li><a href="#tabs-3">loro</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p>es un mamífero carnívoro de la familia Felidae. Es una subespecie domesticada por la convivencia con el ser humano.</p>
+  </div>
+  <div id="tabs-2">
+    <p> es un mamífero carnívoro de la familia de los cánidos, que constituye una subespecie del lobo</p>
+  </div>
+  <div id="tabs-3">
+    <p>Los loros son aves de colores llamativos de gran colorido. Es el nombre común que se utiliza para denominar a unas 340 especies de aves entre los que englobamos a las cacatúas, los guacamayos, los pericos y demás. Los loros pertenecen a la familia de los psitácidos, del orden de los psitaciformes</p>
+  </div>
+</div>
+
+<!-- -->
+<div id="donacion" style="padding:50px 0;text-align:center;">
+  
+  <button style="padding:10px 20px;" id="Button1">Donar</button><br><br>
+  <div id="Progressbar1"></div>
+  <span id="avance" style="font-size:20px;color:red;font-family:sans-serif;display:block;margin-top:10px;"></span>
+  <div id="Dialog1" hidden="true">Donación completada</div>
+
+
+</div>  
+<script type="text/javascript">
+$(function() {
+  /*
+  $( "#Progressbar1" ).progressbar({ 
+    value : false   //100 (lleno) 50 (mitad)
+  }); 
+  $( "#Dialog1" ).dialog(); 
+  */
+  $( "#Button1" ).button(); 
+});
+
+$("#Button1").click(function(){
+    var val = 0;
+    var interval = setInterval(function(){
+        val = val + 1;
+        $("#Progressbar1").progressbar({ value: val });
+        $("#avance").text("Donando " + val + "%");
+        if(val == 100){
+          clearInterval(interval);
+          $("#Dialog1").dialog({
+                  modal : true,
+                  buttons: {
+                      "Salir" : function(){
+                          $(this).dialog("close");
+                        }
+                    }
+                });
+        }
+      }, 50);
+  }
+);
+  
+  $(function() {
+  //$( "#Accordion1" ).accordion(); 
+  
+  var icons = { header: "ui-icon-circle-arrow-e", 
+          activeHeader: "ui-icon-circle-arrow-s"
+        };
+  $("#Accordion1").accordion({
+                  collapsible : true,
+                  icons : icons,
+                  active : 2 
+                 });  
+  });
+
+
+  $("button#boton").on("click", function (event){
+    $("#titulo").html('BIENVENIDOS A MI PÁGINA!');
+    $("#titulo").css('color', 'red');
+    $("#titulo").css({"color":'red', "font-size":"150%"});
+    $(this).hide(); //show()
+  });
+
+  $("#tabs").tabs();
+  
+</script>
+</body>
+</html>
